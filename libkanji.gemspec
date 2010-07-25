@@ -29,7 +29,20 @@ Gem::Specification.new do |s|
      "lib/libkanji/dictionary.rb",
      "lib/libkanji/dictionary_word.rb",
      "lib/libkanji/sentence.rb",
-     "lib/libkanji/sentence_word.rb"
+     "lib/libkanji/sentence_word.rb",
+     "libkanji.gemspec",
+     "old/analyzer.rb",
+     "old/data/kanji_template.svg",
+     "old/data/kanjidic2.xml",
+     "old/data/kitchen.txt",
+     "old/data/strokes.xml",
+     "old/data/yugi.txt",
+     "old/kanji_from_font.rb",
+     "old/kanji_strokes.rb",
+     "old/libdic.rb",
+     "old/libkanji.rb",
+     "old/svg_output.rb",
+     "test_libkanji.rb"
   ]
   s.homepage = %q{http://github.com/kirillrdy/libkanji}
   s.rdoc_options = ["--charset=UTF-8"]

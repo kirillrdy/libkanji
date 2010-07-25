@@ -7,7 +7,9 @@ include LibKanji
 
 text = IO.read("data/ruby.txt")
 
-puts Sentence.parse(text.lines.to_a.first).inspect
+text = "取って\n名付けられた。"
+
+puts Sentence.parse(text).map{|x|x.word }.inspect
 
 #text.lines.each do|line|
 #  puts Dictionary.parse_sentence(line).inspect

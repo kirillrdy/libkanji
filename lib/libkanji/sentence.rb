@@ -30,7 +30,8 @@ module LibKanji
 
         start += 1
       end
-      return self.clean_empty(list_of_words_in_sentence)
+      return list_of_words_in_sentence
+      #return self.clean_empty(list_of_words_in_sentence)
     end
     
     def self.clean_empty(words)
