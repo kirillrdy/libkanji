@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
-require 'libkanji'
+
+require_relative 'lib/libkanji'
+#require 'libkanji'
 
 include LibKanji
 
