@@ -33,5 +33,12 @@ module LibKanji
         c.conjugations.include?("頼もしくない").should be_true
       end
     end
+    
+    describe "nouns" do
+      it "should support Nだ" do
+        c = Conjugations.new("台所", "n")
+        c.conjugations.include?("台所だ").should be_true
+      end
+    end
   end
 end

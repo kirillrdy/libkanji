@@ -44,6 +44,11 @@ class Conjugations
         [(@word + 'な')]
       when 'adj-t', 'adj-f', 'adj-no', 'adj-pn'
         puts "'#{@type}' is currently unsupported"
+      #
+      # Nouns
+      #
+      when "n"
+        ['だ'].map {|x| @word + x}
     end
   end
 end
