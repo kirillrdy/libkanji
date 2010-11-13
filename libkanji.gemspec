@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kirill Radzikhovskyy"]
-  s.date = %q{2010-11-12}
+  s.date = %q{2010-11-13}
   s.description = %q{libkanji for analysis and all sorts of awesome things with Kanji}
   s.email = %q{kirillrdy@silverpond.com.au}
   s.extra_rdoc_files = [
@@ -25,9 +25,12 @@ Gem::Specification.new do |s|
      "VERSION",
      "data/dictionary.txt",
      "data/ruby.txt",
+     "example.rb",
      "lib/libkanji.rb",
+     "lib/libkanji/conjugations.rb",
      "lib/libkanji/dictionary.rb",
      "lib/libkanji/dictionary_word.rb",
+     "lib/libkanji/libkanji_helper.rb",
      "lib/libkanji/sentence.rb",
      "lib/libkanji/sentence_word.rb",
      "libkanji.gemspec",
@@ -41,8 +44,7 @@ Gem::Specification.new do |s|
      "old/kanji_strokes.rb",
      "old/libdic.rb",
      "old/libkanji.rb",
-     "old/svg_output.rb",
-     "test_libkanji.rb"
+     "old/svg_output.rb"
   ]
   s.homepage = %q{http://github.com/kirillrdy/libkanji}
   s.rdoc_options = ["--charset=UTF-8"]
