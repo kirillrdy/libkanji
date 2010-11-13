@@ -20,33 +20,40 @@ module LibKanji
     
     # This is a massive Hash that contains all our mapped answers
     def self.words_hash
-
       return @hash if @hash
-
-      # dump file contains hash of words
-      if File.exists?(DICTIONARY_DUMP_FILE)
-        @hash = Marshal.load(IO.read(DICTIONARY_DUMP_FILE))
-        return @hash
+      @hash = if File.exists?(DICTIONARY_DUMP_FILE)
+        # dump file contains hash of words
+        Marshal.load(IO.read(DICTIONARY_DUMP_FILE))
+      else
+        load_dictionary_file
       end
+    end
 
-      @hash = {}
+    #
+    # Loads all words from data/dictionary.txt into a hash. Adds all conjugations of each word. Caches hash in DICTIONARY_DUMP_FILE
+    #
+    def self.load_dictionary_file
+      hash = {}      
+      # add word and all it's conjugations to the dictionary hash
       self.parse_text_dictionary.each do |dictionary_word|
-        @hash[dictionary_word.word] ||= []
-        @hash[dictionary_word.word] << dictionary_word
+        hash[dictionary_word.word] ||= []
+        hash[dictionary_word.word] << dictionary_word
       
         # TODO all other possible conjugations
         for item in dictionary_word.conjugations
-          @hash[item] ||= []
-          @hash[item] << dictionary_word
+          hash[item] ||= []
+          hash[item] << dictionary_word
         end
       end
     
-      File.open(DICTIONARY_DUMP_FILE,'w') {|f| f.write(Marshal.dump(@hash)) }
-
-      return @hash
+      # cache file
+      File.open(DICTIONARY_DUMP_FILE,'w') {|f| f.write(Marshal.dump(hash)) }
+      hash
     end
-
-    # Parses Plain text dictionary into Word(s)
+    
+    #
+    # Parses data/dictionary.txt into DictionaryWord objects containing word, pronunciation, meanings etc.
+    #
     def self.parse_text_dictionary
       text = IO.read(DICTIONARY_FILE)
       words = text.scan(/^(.*?) \/\((.*?)\) (.*)\//)
@@ -64,6 +71,5 @@ module LibKanji
       words.delete_if {|x| x == nil }
       return words
     end
-
   end
 end # Module
