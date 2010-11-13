@@ -22,9 +22,7 @@ module LibKanji
           lookup sentence[start..finish]
         end
 
-        if @words_from_dictionary
-          start += @matched_part_from_text.length - 1
-        end
+        start += (@matched_part_from_text.length - 1) if @words_from_dictionary
 
         key_to_add = @matched_part_from_text || sentence[start..start]
         
