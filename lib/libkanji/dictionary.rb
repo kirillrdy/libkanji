@@ -17,8 +17,6 @@ module LibKanji
     end
     
     private
-
-    private
     
     # This is a massive Hash that contains all our mapped answers
     def self.words_hash
