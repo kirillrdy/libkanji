@@ -1,10 +1,13 @@
 module LibKanji
-  
+
   #
-  # Parses a Japanese sentence into words.
+  # Methods for working with Japanese sentences.
   #
   module Sentence
 
+    #
+    # Parses a Japanese sentence into words.
+    #
     def self.parse(sentence)
       list_of_words_in_sentence = []
 
