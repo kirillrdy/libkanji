@@ -25,6 +25,7 @@ module LibKanji
 
       return @hash if @hash
 
+      # dump file contains hash of words
       if File.exists?(DICTIONARY_DUMP_FILE)
         @hash = Marshal.load(IO.read(DICTIONARY_DUMP_FILE))
         return @hash
