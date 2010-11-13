@@ -51,9 +51,14 @@ class Dictionary
       word.gsub!(/ \[.*?\]/,"")
       types = type.split(",")
       meanings = meaning.split("\/")
+      # for purpose of quality we dont need one length 
+      # hiragana or katakana
+      next if word.length == 1 &&  (word.is_hiragana? || word.is_katakana?)
       DictionaryWord.new(word,pronunciation,types,meanings)
     end
-
+    
+    words.delete_if {|x| x == nil }
+    
     return words
   end
 
