@@ -31,30 +31,7 @@ module LibKanji
         start += 1
       end
       return list_of_words_in_sentence
-      #return self.clean_empty(list_of_words_in_sentence)
     end
     
-    def self.clean_empty(words)
-      new_list = []
-      next_word = ""
-      words.each do |word|
-
-        if not word.dictionary_words
-          next_word += word.word
-        end
-
-        if word.dictionary_words
-          if not next_word == ''
-            new_list << SentenceWord.new(next_word,nil)
-            next_word = ''
-          end
-          new_list << word
-        end
-      end
-      
-      return new_list
-      
-    end
-
   end
 end
