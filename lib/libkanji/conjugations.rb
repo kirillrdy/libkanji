@@ -7,6 +7,9 @@ class Conjugations
   
   def conjugations
     case @type
+      #
+      # Verbs
+      #
       when "v1"
         [ "ない",'ます','ましょう','たい','なさい','られる','れば','よう','た','て'].map {|x| @word.gsub(/る$/,x)}
       when "v5u"
@@ -27,10 +30,20 @@ class Conjugations
         ['がない','ぎます','ぎましょう','ぎたい','ぎなさい','げる','げ','げば','ごう','いだ','いで'].map {|x| @word.gsub(/ぐ$/,x)}
       when "v5b"
         ['ばない','びます','びましょう','びたい','びなさい','べる','べ','べば','ぼう','んだ','んで'].map {|x| @word.gsub(/ぶ$/,x)}
+      when "vk"
+        # 来る special case
+        ['ない','ます','ましょう','たい','なさい','られる','れば','よう','た','て','される','い'].map {|x| @word.gsub(/る$/,x)}
+      when "v5aru", "v5z", "v5uru", "v5u-s", "v5r-i", "v5k-s", "vt", "vs-s", "vs-i", "vs", "vn", "vi", "vz"
+        puts "'#{@type}' is currently unsupported"
+      #
+      # Adjectives
+      #
+      when 'adj', 'adj-i'
+        ['く','くない','くて','かった','ければ','くなかった'].map {|x| @word.gsub(/い$/,x)}
       when 'adj-na'
         [(@word + 'な')]
-      when 'adj'
-        ['く','くない','くて','かった','ければ','くなかった'].map {|x| @word.gsub(/い$/,x)}
+      when 'adj-t', 'adj-f', 'adj-no', 'adj-pn'
+        puts "'#{@type}' is currently unsupported"
     end
   end
 end
