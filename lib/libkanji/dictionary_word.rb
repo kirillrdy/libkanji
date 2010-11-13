@@ -8,7 +8,7 @@ class LibKanji::DictionaryWord
   def to_s
     stuff = "#{@pronunciation} "
     stuff = "#{@word} " unless @pronunciation
-    "#{stuff}: #{@type.join ","} #{@meaning}"
+    "#{stuff}: #{@types.join ","} #{@meaning}"
   end
   
   def initialize(word,pronunciation,types,meaning)
