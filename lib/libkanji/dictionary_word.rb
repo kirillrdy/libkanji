@@ -51,7 +51,6 @@ class LibKanji::DictionaryWord
       ['ばない','びます','びましょう','びたい','びなさい','べる','べ','べば','ぼう','んだ','んで'].each {|x| list << self.word.gsub(/ぶ$/,x)}
     end
     if type.include? 'adj-na'
-      puts "*" * 30 if self.word == '適切'
       list << (self.word + 'な')
     end
     return list
