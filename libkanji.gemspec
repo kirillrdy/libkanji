@@ -19,6 +19,9 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     ".rvmrc",
+     "Gemfile",
+     "Gemfile.lock",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -44,13 +47,22 @@ Gem::Specification.new do |s|
      "old/kanji_strokes.rb",
      "old/libdic.rb",
      "old/libkanji.rb",
-     "old/svg_output.rb"
+     "old/svg_output.rb",
+     "spec/libkanji/conjugations_spec.rb",
+     "spec/libkanji/dictionary_spec.rb",
+     "spec/libkanji/sentence_spec.rb",
+     "test_libkanji.rb"
   ]
   s.homepage = %q{http://github.com/kirillrdy/libkanji}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{For All Your Kanji Needs}
+  s.test_files = [
+    "spec/libkanji/conjugations_spec.rb",
+     "spec/libkanji/dictionary_spec.rb",
+     "spec/libkanji/sentence_spec.rb"
+  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

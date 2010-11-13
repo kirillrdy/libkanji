@@ -1,5 +1,7 @@
 source :gemcutter
 
+gem "jeweler"
+
 # testing 
 group :test do
   gem "factory_girl", :require => nil
