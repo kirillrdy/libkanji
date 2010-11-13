@@ -5,6 +5,9 @@ module LibKanji
     DICTIONARY_DUMP_FILE = '/tmp/dic_dump'
     DICTIONARY_FILE =  File.dirname(__FILE__) + '/../../data/dictionary.txt'
 
+    #
+    # Wrapper functions for accessing words hash
+    #
     def self.search(word)
       self.words_hash[word]
     end
@@ -12,6 +15,8 @@ module LibKanji
     def self.has_word?(word)
       self.words_hash.has_key? word
     end
+    
+    private
 
     private
     
