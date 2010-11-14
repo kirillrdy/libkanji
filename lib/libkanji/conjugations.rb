@@ -96,7 +96,10 @@ class Conjugations
       when "vs-i"
         # する special case
         ['しない','します','し','して','した','している','すれば','しょう','できる','される','させる','しろ'].map {|x| @word.gsub(/する$/,x)}
-      when "v5aru", "v5z", "v5uru", "v5u-s", "v5r-i", "v5k-s", "vt", "vs-s", "vs", "vn", "vi", "vz"
+      when "v5r-i"
+        # ある special case
+        ['いない','あり','あります','あって','あった','あれば'].map {|x| @word.gsub(/ある$/,x)}
+      when "v5aru", "v5z", "v5uru", "v5u-s", "v5k-s", "vt", "vs-s", "vs", "vn", "vi", "vz"
         puts "'#{@type}' is currently unsupported"
       #
       # Adjectives

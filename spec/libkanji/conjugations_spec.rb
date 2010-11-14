@@ -20,10 +20,10 @@ module LibKanji
         c.conjugations.include?("来い").should be_true
       end
       
-      it "should support v5r-i (like ある)" do
+      it "should support v5r-i (i.e. ある)" do
         c = Conjugations.new("ある", "v5r-i")
-        pending
         c.conjugations.include?("いない").should be_true
+        c.conjugations.include?("あって").should be_true
       end
     end
     
