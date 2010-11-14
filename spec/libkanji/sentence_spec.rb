@@ -17,7 +17,7 @@ module LibKanji
       words = Sentence.parse(text).map{|x|x.word}
 
       # いちばん should be a single word, but for simplicity we don't look up words by pronunciation 
-      words.should == ["私", "が", "この世", "で", "い", "ち", "ば", "ん", "好きな", "場所", "は", "台所だ", "と", "思う", "。"]
+      words.should == ["私", "が", "この世で",  "い", "ち", "ば", "ん", "好きな", "場所", "は", "台所だ", "と", "思う", "。"]
     end
   end
 end
