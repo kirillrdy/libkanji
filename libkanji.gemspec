@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "data/dictionary.txt",
+     "data/hiragana.txt",
      "data/ruby.txt",
      "example.rb",
      "lib/libkanji.rb",

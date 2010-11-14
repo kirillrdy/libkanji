@@ -11,5 +11,9 @@ module LibKanji
     it "should tell you if a word is in the dictionary or not" do
       Dictionary.has_word?("来る").should be_true
     end
+
+    it "should load some words commonly written in hiragana" do
+      Dictionary.has_word?("いい").should be_true
+    end
   end
 end

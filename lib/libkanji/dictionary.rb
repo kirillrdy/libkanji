@@ -4,6 +4,7 @@ module LibKanji
 
     DICTIONARY_DUMP_FILE = '/tmp/dic_dump'
     DICTIONARY_FILE =  File.dirname(__FILE__) + '/../../data/dictionary.txt'
+    HIRAGANA_DICTIONARY_FILE =  File.dirname(__FILE__) + '/../../data/hiragana.txt'
 
     #
     # Wrapper functions for accessing words hash
@@ -52,10 +53,12 @@ module LibKanji
     end
     
     #
-    # Parses data/dictionary.txt into DictionaryWord objects containing word, pronunciation, meanings etc.
+    # Parses data/dictionary.txt and data/hiragana.txt into DictionaryWord objects containing word, pronunciation, meanings etc.
     #
     def self.parse_text_dictionary
       text = IO.read(DICTIONARY_FILE)
+      text += IO.read(HIRAGANA_DICTIONARY_FILE)
+
       words = text.scan(/^(.*?) \/\((.*?)\) (.*)\//)
       words.map! do |word,type,meaning|
         pronunciation = word.scan(/\[(.*?)\]/).first.first if word.scan(/\[(.*?)\]/).first
