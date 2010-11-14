@@ -39,6 +39,8 @@ Gem::Specification.new do |s|
      "lib/libkanji/sentence_word.rb",
      "libkanji.gemspec",
      "old/analyzer.rb",
+     "old/data/advertisement.txt",
+     "old/data/asahi.txt",
      "old/data/kanji_template.svg",
      "old/data/kanjidic2.xml",
      "old/data/kitchen.txt",
