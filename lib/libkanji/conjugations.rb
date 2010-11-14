@@ -93,7 +93,10 @@ class Conjugations
       when "vk"
         # 来る special case
         ['ない','ます','ましょう','たい','なさい','られる','れば','よう','た','て','される','い'].map {|x| @word.gsub(/る$/,x)}
-      when "v5aru", "v5z", "v5uru", "v5u-s", "v5r-i", "v5k-s", "vt", "vs-s", "vs-i", "vs", "vn", "vi", "vz"
+      when "vs-i"
+        # する special case
+        ['しない','します','し','して','した','している','すれば','しょう','できる','される','させる','しろ'].map {|x| @word.gsub(/する$/,x)}
+      when "v5aru", "v5z", "v5uru", "v5u-s", "v5r-i", "v5k-s", "vt", "vs-s", "vs", "vn", "vi", "vz"
         puts "'#{@type}' is currently unsupported"
       #
       # Adjectives
@@ -113,7 +116,7 @@ class Conjugations
       when "n"
         # FIXME: する is not really a conjugation - it modifies the noun to make it a verb.
         # should really change the part of speech for the conjugation
-        ['だ', 'の', 'で', 'でない', 'だった', 'なら', 'する'].map {|x| @word + x}
+        ['だ', 'の', 'で', 'でない', 'だった', 'なら'].map {|x| @word + x} + ['する', 'しない','します','し','して','した','している','すれば','しょう','できる','される','させる','しろ'].map {|x| @word + x}
     end
   end
 end
