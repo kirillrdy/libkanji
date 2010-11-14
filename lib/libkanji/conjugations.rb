@@ -93,6 +93,7 @@ class Conjugations
       when "vk"
         # 来る special case
         ['ない','ます','ましょう','たい','なさい','られる','れば','よう','た','て','される','い'].map {|x| @word.gsub(/る$/,x)}
+        # TODO: handle くる in hiragana (こない etc.)
       when "vs-i"
         # する special case
         ['しない','します','し','して','した','している','すれば','しょう','できる','される','させる','しろ'].map {|x| @word.gsub(/する$/,x)}
