@@ -103,8 +103,8 @@ class Conjugations
       when 'adj-na'
         [(@word + 'な')]
       when 'adj-pn'
-        # as far as I know, nothing should be done to these rentaishi
-        [@word]
+        # as far as I know, this is what you can do with these rentaishi
+        [(@word + 'の')]
       when 'adj-t', 'adj-f', 'adj-no'
         puts "'#{@type}' is currently unsupported"
       #
