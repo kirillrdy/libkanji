@@ -111,7 +111,9 @@ class Conjugations
       # Nouns
       #
       when "n"
-        ['だ', 'の', 'で', 'でない', 'だった', 'なら'].map {|x| @word + x}
+        # FIXME: する is not really a conjugation - it modifies the noun to make it a verb.
+        # should really change the part of speech for the conjugation
+        ['だ', 'の', 'で', 'でない', 'だった', 'なら', 'する'].map {|x| @word + x}
     end
   end
 end

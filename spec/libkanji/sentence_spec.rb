@@ -19,6 +19,11 @@ module LibKanji
       # いちばん should be a single word, but for simplicity we don't look up words by pronunciation 
       words.should == ["私", "が", "この世で",  "い", "ち", "ば", "ん", "好きな", "場所", "は", "台所だ", "と", "思う", "。"]
     end
+    
+    it "should handle Nするという" do
+      words = Sentence.parse("挑戦するという").map{|x|x.word}
+      words.should == ["挑戦する", "という"]
+    end
   end
 end
 
