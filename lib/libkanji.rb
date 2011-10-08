@@ -1,6 +1,10 @@
-require_relative 'libkanji/dictionary'
-require_relative 'libkanji/sentence'
-require_relative 'libkanji/conjugations'
-require_relative 'libkanji/dictionary_word'
-require_relative 'libkanji/sentence_word'
-require_relative 'libkanji/libkanji_helper.rb'
+require "libkanji/version"
+
+module Libkanji
+  require 'libkanji/dictionary'
+  require 'libkanji/sentence'
+  require 'libkanji/conjugations'
+  require 'libkanji/dictionary_word'
+  require 'libkanji/sentence_word'
+  require 'libkanji/libkanji_helper.rb'
+end
