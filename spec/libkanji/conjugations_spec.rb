@@ -1,6 +1,7 @@
 # encoding: utf-8
-require_relative "../../lib/libkanji"
-gem 'rspec-rails'
+
+require_relative '../../lib/libkanji'
+require 'rspec'
 
 module LibKanji
   describe Conjugations do

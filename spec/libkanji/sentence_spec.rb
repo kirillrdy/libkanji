@@ -1,6 +1,7 @@
 # encoding: utf-8
+
 require_relative "../../lib/libkanji"
-gem 'rspec-rails'
+gem 'rspec'
 
 module LibKanji
   describe Sentence do

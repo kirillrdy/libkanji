@@ -1,6 +1,6 @@
 # encoding: utf-8
 require_relative "../../lib/libkanji"
-gem 'rspec-rails'
+require 'rspec'
 
 module LibKanji
   describe Dictionary do
