@@ -2,6 +2,7 @@
 module LibKanji
   module Dictionary
 
+    # If you want to use own precompiled dictionary hash please set path here
     DICTIONARY_DUMP_FILE = '/tmp/libkanji_dic_dump'
     DICTIONARY_FILE =  File.dirname(__FILE__) + '/../../data/dictionary.txt'
     HIRAGANA_DICTIONARY_FILE =  File.dirname(__FILE__) + '/../../data/hiragana.txt'
