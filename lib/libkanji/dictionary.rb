@@ -2,7 +2,7 @@
 module LibKanji
   module Dictionary
 
-    DICTIONARY_DUMP_FILE = '/tmp/dic_dump'
+    DICTIONARY_DUMP_FILE = '/tmp/libkanji_dic_dump'
     DICTIONARY_FILE =  File.dirname(__FILE__) + '/../../data/dictionary.txt'
     HIRAGANA_DICTIONARY_FILE =  File.dirname(__FILE__) + '/../../data/hiragana.txt'
 
