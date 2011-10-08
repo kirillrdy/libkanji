@@ -26,7 +26,7 @@ module LibKanji
       if Dictionary.has_word? part
         @words_from_dictionary = Dictionary.search(part)
         @matched_part_from_text = part
-      end      
+      end
     end
 
     def self.next_start_pointer(start)
@@ -41,7 +41,7 @@ module LibKanji
         lookup sentence[start..finish]
       end
       
-      start = next_start_pointer(start)      
+      start = next_start_pointer(start)
       word_in_sentence = @matched_part_from_text || sentence[start..start]
 
       start += 1

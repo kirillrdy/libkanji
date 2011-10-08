@@ -34,7 +34,7 @@ module LibKanji
     # Loads all words from data/dictionary.txt into a hash. Adds all conjugations of each word. Caches hash in DICTIONARY_DUMP_FILE
     #
     def self.load_dictionary_file
-      hash = {}      
+      hash = {}
       # add word and all it's conjugations to the dictionary hash
       self.parse_text_dictionary.each do |dictionary_word|
         hash[dictionary_word.word] ||= []
