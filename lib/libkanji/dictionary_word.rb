@@ -21,7 +21,7 @@ class LibKanji::DictionaryWord
   def conjugations
     list = []
     for type in @types
-      list_of_conjugations =  Conjugations.new(@word,type).conjugations
+      list_of_conjugations =  LibKanji::Conjugations.new(@word,type).conjugations
       list += list_of_conjugations if list_of_conjugations
     end
     return list
