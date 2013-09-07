@@ -2,13 +2,14 @@ package main
 import "regexp"
 import "io/ioutil"
 import "fmt"
-
-
+import "strings"
+import "./zfsdb"
 
 func main() {
 	dictionary_entry_regex, err := regexp.Compile(`(.*?) \[(.*?)\] (.*?)\n`)
 	if err != nil { panic(err) }
 
+	// TODO dont load all at once
 	text, err := ioutil.ReadFile("edict2_utf8")
 	if err != nil { panic(err) }
 
@@ -17,14 +18,18 @@ func main() {
 		fmt.Println("************ Start of word ****************")
 
 		words := dictionary_entry[1]
-		fmt.Printf("'%s' \n", words)
+		for _, word  := range strings.Split(words, ";") {
 
-		pronunciations := dictionary_entry[2]
-		fmt.Printf("'%s' \n", pronunciations)
+			dictionary_word := zfsdb.CreateObject()
+			dictionary_word.WriteFact("type","dictionary_word")
+			dictionary_word.WriteFact("word",word)
 
-		meanings := dictionary_entry[3]
-		fmt.Printf("'%s' \n", meanings)
+			//pronunciations := dictionary_entry[2]
+			//fmt.Printf("'%s' \n", pronunciations)
 
-		fmt.Println("End of word \n")
+			//meanings := dictionary_entry[3]
+			//fmt.Printf("'%s' \n", meanings)
+
+		}
 	}
 }
