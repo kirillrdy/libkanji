@@ -20,15 +20,14 @@ func main() {
 		words := dictionary_entry[1]
 		for _, word  := range strings.Split(words, ";") {
 
+			//TODO strip () from words
 			dictionary_word := zfsdb.CreateObject()
-			dictionary_word.WriteFact("type","dictionary_word")
+			dictionary_word.WriteFact("type", "dictionary_word")
 			dictionary_word.WriteFact("word",word)
 
-			//pronunciations := dictionary_entry[2]
-			//fmt.Printf("'%s' \n", pronunciations)
+			dictionary_word.WriteFact("pronunciation", dictionary_entry[2])
 
-			//meanings := dictionary_entry[3]
-			//fmt.Printf("'%s' \n", meanings)
+			dictionary_word.WriteFact("meaning", dictionary_entry[3])
 
 		}
 	}
