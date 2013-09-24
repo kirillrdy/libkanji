@@ -20,7 +20,7 @@ func main() {
 		words := dictionary_entry[1]
 		for _, word  := range strings.Split(words, ";") {
 
-			//TODO strip () from words
+			//TODO strip '()' from words
 			dictionary_word := zfsdb.CreateObject()
 			dictionary_word.WriteFact("type", "dictionary_word")
 			dictionary_word.WriteFact("word",word)
