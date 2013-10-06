@@ -26,7 +26,7 @@ func LoadDictionary() Dictionary {
 	dictionary_entries := dictionary_entry_regex.FindAllStringSubmatch(string(text),-1)
 
 	//TODO remove slicing
-	for _, dictionary_entry := range dictionary_entries[0:1000] {
+	for _, dictionary_entry := range dictionary_entries {
 
 		words := dictionary_entry[1]
 		for _, word  := range strings.Split(words, ";") {
