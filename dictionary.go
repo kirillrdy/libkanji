@@ -12,6 +12,8 @@ type DictionaryWord struct {
 
 type Dictionary []DictionaryWord
 
+var lookupDictionary map[string][]*DictionaryWord
+
 func LoadDictionary() Dictionary {
 
 	var dictionary Dictionary
@@ -32,11 +34,20 @@ func LoadDictionary() Dictionary {
 		for _, word  := range strings.Split(words, ";") {
 
 			//TODO strip '()' from words
+			//TODO split pronunciations by ';'
+			//Get type of meaning in brakets  eg (n)
+			// Pronunciations also have '()'
 
 			dictionary_word := DictionaryWord{Word: word, Pronunciation: dictionary_entry[1], Meanings: strings.Split(dictionary_entry[3],",")}
-			dictionary = append(dictionary, dictionary_word)
+			//dictionary = append(dictionary, dictionary_word)
+
+			lookupDictionary[dictionary_word.Word] = append(lookupDictionary[dictionary_word.Word], &dictionary_word)
+
 		}
 	}
 	return dictionary
 }
 
+func init() {
+	lookupDictionary = make(map[string][]*DictionaryWord)
+}
