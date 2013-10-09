@@ -22,12 +22,17 @@ func CreateWord(original string ) (word DictionaryWord) {
 		return
 	}
 
-	word.KanjiWords = strings.Split(dictionary_entries[1], ";")
+	strip_ending_regex := regexp.MustCompile(`\(.*?\)$`)
+
+	for _, kanjiWord := range strings.Split(dictionary_entries[1], ";") {
+		word.KanjiWords = append(word.KanjiWords, strip_ending_regex.ReplaceAllLiteralString(kanjiWord, ""))
+	}
 	word.Pronunciations = strings.Split(dictionary_entries[2], ";")
 	word.Types = strings.Split(dictionary_entries[3], ",")
 	word.Meanings = strings.Split(dictionary_entries[4], "/")
 
 	//fmt.Printf("%q \n", word.KanjiWords)
+
 
 	//TODO strip '()' from words
 	//TODO split pronunciations by ';'
