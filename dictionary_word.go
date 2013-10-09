@@ -93,6 +93,15 @@ func  conjugationsForWord(word, wordType string) []string {
 	case wordType == "v5b":
 		conjugations = append(conjugations, collectionSubber(word,
 			[]string{"ばない","びます","びましょう","びたい","びなさい","べる","べ","べば","ぼう","んだ","んで"},"ぶ$")...)
+	case wordType == "vk":
+        //来る special case
+        //TODO: handle くる in hiragana (こない etc.)
+		conjugations = append(conjugations, collectionSubber(word,
+			[]string{"ない","ます","ましょう","たい","なさい","られる","れば","よう","た","て","される","い"},"る$")...)
+	case wordType == "vs-i":
+		conjugations = append(conjugations, collectionSubber(word,
+			[]string{"しない","します","し","して","した","している","すれば","しょう","できる","される","させる","しろ"},"する$")...)
 	}
+	//TODO port the rest of conjugations
 	return conjugations
 }
