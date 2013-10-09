@@ -25,8 +25,9 @@ func LoadDictionary() Dictionary {
 		word  := CreateWord(edict_file_scanner.Text())
 
 		if len(word.KanjiWords) != 0 {
-			dictionary = append(dictionary, word)
+			//dictionary = append(dictionary, word)
 			for _, conjugatedWord := range word.Conjugations() {
+				//fmt.Printf("%q\n",conjugatedWord)
 				LookupDictionary[conjugatedWord] = append(LookupDictionary[conjugatedWord], &word)
 			}
 		}
