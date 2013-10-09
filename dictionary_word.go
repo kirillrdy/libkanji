@@ -43,8 +43,11 @@ func CreateWord(original string ) (word DictionaryWord) {
 
 func (dictionaryWord DictionaryWord) Conjugations() []string {
 	var conjugations []string
+
+
 	for _, word := range dictionaryWord.KanjiWords {
 		for _, wordType := range dictionaryWord.Types {
+			conjugations = append(conjugations, word)
 			conjugations = append(conjugations, conjugationsForWord(word, wordType)...)
 		}
 	}
