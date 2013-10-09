@@ -9,7 +9,7 @@ import "bufio"
 
 type Dictionary []DictionaryWord
 
-var lookupDictionary map[string][]*DictionaryWord
+var LookupDictionary map[string][]*DictionaryWord
 
 func LoadDictionary() Dictionary {
 
@@ -27,7 +27,7 @@ func LoadDictionary() Dictionary {
 		if len(word.KanjiWords) != 0 {
 			dictionary = append(dictionary, word)
 			for _, conjugatedWord := range word.Conjugations() {
-				lookupDictionary[conjugatedWord] = append(lookupDictionary[conjugatedWord], &word)
+				LookupDictionary[conjugatedWord] = append(LookupDictionary[conjugatedWord], &word)
 			}
 		}
 
@@ -37,5 +37,5 @@ func LoadDictionary() Dictionary {
 }
 
 func init() {
-	lookupDictionary = make(map[string][]*DictionaryWord)
+	LookupDictionary = make(map[string][]*DictionaryWord)
 }
