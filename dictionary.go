@@ -26,6 +26,9 @@ func LoadDictionary() Dictionary {
 
 		if len(word.KanjiWords) != 0 {
 			dictionary = append(dictionary, word)
+			for _, conjugatedWord := range word.Conjugations() {
+				lookupDictionary[conjugatedWord] = append(lookupDictionary[conjugatedWord], &word)
+			}
 		}
 
 	}
