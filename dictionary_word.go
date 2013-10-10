@@ -3,7 +3,7 @@ package libkanji
 //import "errors"
 import "regexp"
 import "strings"
-//import "fmt"
+import "fmt"
 
 type DictionaryWord struct {
 	KanjiWords []string
@@ -15,22 +15,33 @@ type DictionaryWord struct {
 
 func CreateWord(original string ) (word DictionaryWord) {
 	dictionary_entry_regex, err := regexp.Compile(`(.*?) \[(.*?)\] /\((.*?)\) (.*?)$`)
+	furigana_entry_regex, err := regexp.Compile(`(.*?) /\((.*?)\) (.*?)$`)
 	if err != nil { panic(err) }
 
 	dictionary_entries := dictionary_entry_regex.FindStringSubmatch(original)
 	if len(dictionary_entries) == 0 {
-		return
+		dictionary_entries = furigana_entry_regex.FindStringSubmatch(original)
+		if len(dictionary_entries) == 0 {
+			return
+			fmt.Printf("gave up on %q \n", original)
+		}
 	}
 
 	strip_ending_regex := regexp.MustCompile(`\(.*?\)$`)
 
 	for _, kanjiWord := range strings.Split(dictionary_entries[1], ";") {
-		word.KanjiWords = append(word.KanjiWords, strip_ending_regex.ReplaceAllLiteralString(kanjiWord, ""))
+		stripped_word := strip_ending_regex.ReplaceAllLiteralString(kanjiWord, "")
+		word.KanjiWords = append(word.KanjiWords, stripped_word)
 	}
-	word.Pronunciations = strings.Split(dictionary_entries[2], ";")
-	word.Types = strings.Split(dictionary_entries[3], ",")
-	word.Meanings = strings.Split(dictionary_entries[4], "/")
-
+	if len(dictionary_entries) == 5 {
+		word.Pronunciations = strings.Split(dictionary_entries[2], ";")
+		word.Types = strings.Split(dictionary_entries[3], ",")
+		word.Meanings = strings.Split(dictionary_entries[4], "/")
+	} else if len(dictionary_entries) == 4 {
+		word.Pronunciations = strings.Split(dictionary_entries[1], ";")
+		word.Types = strings.Split(dictionary_entries[2], ",")
+		word.Meanings = strings.Split(dictionary_entries[3], "/")
+	} else { panic("Could not parse word correctly") }
 	//fmt.Printf("%q \n", word.KanjiWords)
 
 
