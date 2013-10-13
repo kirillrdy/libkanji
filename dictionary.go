@@ -39,5 +39,7 @@ func LoadDictionary() Dictionary {
 
 func init() {
 	LookupDictionary = make(map[string][]*DictionaryWord)
-	LoadDictionary()
+	go func() {
+		LoadDictionary()
+	}()
 }
