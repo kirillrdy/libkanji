@@ -129,6 +129,9 @@ func  conjugationsForWord(word, wordType string) []string {
 			conjugations = append(conjugations, collectionSubber(word,
 				[]string{"く","くない","くて","かった","ければ","くなかった"},"い$")...)
 
+		case wordType == "adj-na":
+			conjugations = append(conjugations, word+"な")
+
 	}
 	//TODO port the rest of conjugations
 	//fmt.Printf("%q - %q\n",word, conjugations)
