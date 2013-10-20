@@ -57,9 +57,8 @@ func (dictionaryWord DictionaryWord) Conjugations() []string {
 
 
 	for _, word := range dictionaryWord.KanjiWords {
+		conjugations = append(conjugations, word)
 		for _, wordType := range dictionaryWord.Types {
-			conjugations = append(conjugations, word)
-
 			//TODO this is temp
 			//conjugations = append(conjugations, dictionaryWord.Pronunciations[0])
 
