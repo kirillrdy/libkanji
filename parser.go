@@ -2,7 +2,7 @@ package libkanji
 
 import (
 	"fmt"
-	//"strings"
+	"strings"
 	//"code.google.com/p/go.exp/utf8string"
 )
 
@@ -12,6 +12,15 @@ type parsedSentenceItem struct {
 }
 
 type ParsedSentence []parsedSentenceItem
+
+func ParseMultiLine(sentence string) ParsedSentence {
+	var result ParsedSentence
+	for _, line := range strings.Split(sentence, "\n") {
+		result = append(result, ParseSentence(line)...)
+		result= append(result, parsedSentenceItem{"\n", nil})
+	}
+	return result
+}
 
 func ParseSentence(sentence string) ParsedSentence {
 	var parsed ParsedSentence
