@@ -4,7 +4,8 @@ package libkanji
 //import "strings"
 import "os"
 import "bufio"
-
+import "runtime"
+import "path"
 
 
 type Dictionary []DictionaryWord
@@ -15,7 +16,9 @@ func LoadDictionary() Dictionary {
 
 	var dictionary Dictionary
 
-	edict_file, err := os.Open("libkanji/edict2_utf8")
+	_, current_file, _, _ := runtime.Caller(0)
+	path := path.Join(path.Dir(current_file), "edict2_utf8")
+	edict_file, err := os.Open(path)
 	if err != nil { panic(err) }
 
 	edict_file_scanner := bufio.NewScanner(edict_file)
