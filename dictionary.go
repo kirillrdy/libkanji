@@ -1,12 +1,13 @@
 package libkanji
-//import "regexp"
-//import "fmt"
-//import "strings"
-import "os"
-import "bufio"
-import "runtime"
-import "path"
 
+import (
+	"bufio"
+	"log"
+	"os"
+	"path"
+	"runtime"
+	"time"
+)
 
 type Dictionary []DictionaryWord
 
@@ -19,13 +20,14 @@ func LoadDictionary() Dictionary {
 	_, current_file, _, _ := runtime.Caller(0)
 	path := path.Join(path.Dir(current_file), "edict2_utf8")
 	edict_file, err := os.Open(path)
-	if err != nil { panic(err) }
+	if err != nil {
+		panic(err)
+	}
 
 	edict_file_scanner := bufio.NewScanner(edict_file)
 
-
 	for edict_file_scanner.Scan() {
-		word  := CreateWord(edict_file_scanner.Text())
+		word := CreateWord(edict_file_scanner.Text())
 
 		if len(word.KanjiWords) != 0 {
 			//dictionary = append(dictionary, word)
@@ -43,6 +45,8 @@ func LoadDictionary() Dictionary {
 func init() {
 	LookupDictionary = make(map[string][]*DictionaryWord)
 	go func() {
+		now := time.Now()
 		LoadDictionary()
+		log.Printf("Time taken to load dictionary: %v \n", time.Since(now))
 	}()
 }
