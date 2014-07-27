@@ -9,9 +9,11 @@ import (
 	"time"
 )
 
-type Dictionary []DictionaryWord
+type Dictionary []DictionaryEntry
 
-var LookupDictionary map[string][]*DictionaryWord
+type DistionaryLookupMap map[string][]DictionaryEntry
+
+var LookupDictionary = make(DistionaryLookupMap)
 
 func LoadDictionary() Dictionary {
 
@@ -20,6 +22,8 @@ func LoadDictionary() Dictionary {
 	_, current_file, _, _ := runtime.Caller(0)
 	path := path.Join(path.Dir(current_file), "edict2_utf8")
 	edict_file, err := os.Open(path)
+	defer edict_file.Close()
+
 	if err != nil {
 		panic(err)
 	}
@@ -27,13 +31,13 @@ func LoadDictionary() Dictionary {
 	edict_file_scanner := bufio.NewScanner(edict_file)
 
 	for edict_file_scanner.Scan() {
-		word := CreateWord(edict_file_scanner.Text())
+		word := ParseDictionaryLine(edict_file_scanner.Text())
 
 		if len(word.KanjiWords) != 0 {
 			//dictionary = append(dictionary, word)
 			for _, conjugatedWord := range word.Conjugations() {
 				//fmt.Printf("%q\n",conjugatedWord)
-				LookupDictionary[conjugatedWord] = append(LookupDictionary[conjugatedWord], &word)
+				LookupDictionary[conjugatedWord] = append(LookupDictionary[conjugatedWord], word)
 			}
 		}
 
@@ -43,7 +47,6 @@ func LoadDictionary() Dictionary {
 }
 
 func init() {
-	LookupDictionary = make(map[string][]*DictionaryWord)
 	go func() {
 		now := time.Now()
 		LoadDictionary()
