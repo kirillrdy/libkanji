@@ -12,16 +12,16 @@ type SentencePart struct {
 
 type ParsedSentence []SentencePart
 
-func ParseMultiLine(sentence string) ParsedSentence {
+func (dictionary Dictionary) ParseMultiLine(sentence string) ParsedSentence {
 	var result ParsedSentence
 	for _, line := range strings.Split(sentence, "\n") {
-		result = append(result, ParseSentence(line)...)
+		result = append(result, dictionary.ParseSentence(line)...)
 		result = append(result, SentencePart{"\n", nil})
 	}
 	return result
 }
 
-func ParseSentence(sentence string) ParsedSentence {
+func (dictionary Dictionary) ParseSentence(sentence string) ParsedSentence {
 	var parsed ParsedSentence
 
 	fmt.Printf("parsing: %q\n", sentence)
@@ -35,7 +35,7 @@ func ParseSentence(sentence string) ParsedSentence {
 		end_index = start_index + 1
 		for end_index = start_index + 1; end_index <= len(sentence); end_index++ {
 
-			if _, ok := LookupDictionary[sentence[start_index:end_index]]; ok {
+			if _, ok := dictionary.bigHash[sentence[start_index:end_index]]; ok {
 				last_longest_key = sentence[start_index:end_index]
 			}
 		}
@@ -47,7 +47,7 @@ func ParseSentence(sentence string) ParsedSentence {
 				parsed = append(parsed, SentencePart{unparsed_buffer, nil})
 				unparsed_buffer = ""
 			}
-			parsed = append(parsed, SentencePart{last_longest_key, LookupDictionary[last_longest_key]})
+			parsed = append(parsed, SentencePart{last_longest_key, dictionary.bigHash[last_longest_key]})
 			start_index = start_index + len(last_longest_key)
 		}
 	}

@@ -2,22 +2,21 @@ package libkanji
 
 import (
 	"bufio"
-	"log"
 	"os"
 	"path"
 	"runtime"
-	"time"
 )
 
-type Dictionary []DictionaryEntry
+type DictionaryLookupMap map[string][]DictionaryEntry
 
-type DistionaryLookupMap map[string][]DictionaryEntry
-
-var LookupDictionary = make(DistionaryLookupMap)
+type Dictionary struct {
+	bigHash DictionaryLookupMap
+}
 
 func LoadDictionary() Dictionary {
 
 	var dictionary Dictionary
+	dictionary.bigHash = make(DictionaryLookupMap)
 
 	_, current_file, _, _ := runtime.Caller(0)
 	path := path.Join(path.Dir(current_file), "edict2_utf8")
@@ -34,22 +33,13 @@ func LoadDictionary() Dictionary {
 		word := ParseDictionaryLine(edict_file_scanner.Text())
 
 		if len(word.KanjiWords) != 0 {
-			//dictionary = append(dictionary, word)
-			for _, conjugatedWord := range word.Conjugations() {
-				//fmt.Printf("%q\n",conjugatedWord)
-				LookupDictionary[conjugatedWord] = append(LookupDictionary[conjugatedWord], word)
+			conjugations := word.Conjugations()
+			for i := range conjugations {
+				dictionary.bigHash[conjugations[i]] = append(dictionary.bigHash[conjugations[i]], word)
 			}
 		}
 
 	}
 
 	return dictionary
-}
-
-func init() {
-	go func() {
-		now := time.Now()
-		LoadDictionary()
-		log.Printf("Time taken to load dictionary: %v \n", time.Since(now))
-	}()
 }
