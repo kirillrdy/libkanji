@@ -13,6 +13,11 @@ type Dictionary struct {
 	bigHash DictionaryLookupMap
 }
 
+type updateMessage struct {
+	dictionaryEntry DictionaryEntry
+	key             string
+}
+
 func LoadDictionary() Dictionary {
 
 	var dictionary Dictionary
@@ -27,10 +32,10 @@ func LoadDictionary() Dictionary {
 		panic(err)
 	}
 
-	edict_file_scanner := bufio.NewScanner(edictFile)
+	edictFileScanner := bufio.NewScanner(edictFile)
 
-	for edict_file_scanner.Scan() {
-		word := ParseDictionaryLine(edict_file_scanner.Text())
+	for edictFileScanner.Scan() {
+		word := ParseDictionaryLine(edictFileScanner.Text())
 
 		if len(word.KanjiWords) != 0 {
 			conjugations := word.Conjugations()
