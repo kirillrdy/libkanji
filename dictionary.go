@@ -18,16 +18,16 @@ func LoadDictionary() Dictionary {
 	var dictionary Dictionary
 	dictionary.bigHash = make(DictionaryLookupMap)
 
-	_, current_file, _, _ := runtime.Caller(0)
-	path := path.Join(path.Dir(current_file), "edict2_utf8")
-	edict_file, err := os.Open(path)
-	defer edict_file.Close()
+	_, currentSourceFile, _, _ := runtime.Caller(0)
+	path := path.Join(path.Dir(currentSourceFile), "edict2_utf8")
+	edictFile, err := os.Open(path)
+	defer edictFile.Close()
 
 	if err != nil {
 		panic(err)
 	}
 
-	edict_file_scanner := bufio.NewScanner(edict_file)
+	edict_file_scanner := bufio.NewScanner(edictFile)
 
 	for edict_file_scanner.Scan() {
 		word := ParseDictionaryLine(edict_file_scanner.Text())

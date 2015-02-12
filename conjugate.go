@@ -65,10 +65,10 @@ func conjugationsForWord(word, wordType string) []string {
 
 func collectionSubber(word string, collection []string, ending string) (results []string) {
 
-	for _, ending_to_replace := range collection {
-		ending_regex := regexp.MustCompile(ending)
-		new_conjugation := ending_regex.ReplaceAllLiteralString(word, ending_to_replace)
-		results = append(results, new_conjugation)
+	for _, endingToReplace := range collection {
+		endingRegex := regexp.MustCompile(ending)
+		newConjugation := endingRegex.ReplaceAllLiteralString(word, endingToReplace)
+		results = append(results, newConjugation)
 	}
 	return
 }
