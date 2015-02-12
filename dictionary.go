@@ -13,11 +13,6 @@ type Dictionary struct {
 	bigHash DictionaryLookupMap
 }
 
-type updateMessage struct {
-	dictionaryEntry DictionaryEntry
-	key             string
-}
-
 func LoadDictionary() Dictionary {
 
 	var dictionary Dictionary
