@@ -1,0 +1,5 @@
+* LibKanji
+
+** Todo list TODO
+** Make code pass go linter
+** Write a better readme
