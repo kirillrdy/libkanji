@@ -15,6 +15,10 @@ type DictionaryEntry struct {
 }
 
 func ParseDictionaryLine(original string) (word DictionaryEntry) {
+
+	//TODO maybe remove in the future to save memory
+	word.originalString = original
+
 	dictionary_entry_regex, err := regexp.Compile(`(.*?) \[(.*?)\] /\((.*?)\) (.*?)$`)
 	if err != nil {
 		panic(err)
