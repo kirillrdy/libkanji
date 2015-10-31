@@ -15,6 +15,11 @@ type Dictionary struct {
 	bigHash dictionaryLookupMap
 }
 
+//Size returns number of entries in the underlying datastructure
+func (dictionary Dictionary) Size() int {
+	return len(dictionary.bigHash)
+}
+
 //Edict2FilePath returns path of edict file bundled with this package
 func Edict2FilePath() string {
 	_, currentSourceFile, _, _ := runtime.Caller(0)
