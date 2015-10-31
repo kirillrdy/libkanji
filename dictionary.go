@@ -15,11 +15,16 @@ type Dictionary struct {
 	bigHash dictionaryLookupMap
 }
 
-//Edict2File returns ReaderCloser of a bundled edict2 file
-func Edict2File() io.ReadCloser {
+//Edict2FilePath returns path of edict file bundled with this package
+func Edict2FilePath() string {
 	_, currentSourceFile, _, _ := runtime.Caller(0)
 	path := path.Join(path.Dir(currentSourceFile), "edict2_utf8")
-	edictFile, err := os.Open(path)
+	return path
+}
+
+//Edict2File returns ReaderCloser of a bundled edict2 file
+func Edict2File() io.ReadCloser {
+	edictFile, err := os.Open(Edict2FilePath())
 	if err != nil {
 		panic(err)
 	}
