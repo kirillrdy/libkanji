@@ -6,6 +6,7 @@ import (
 	"os"
 	"path"
 	"runtime"
+	"time"
 )
 
 type dictionaryLookupMap map[string][]DictionaryEntry
@@ -40,11 +41,15 @@ func Edict2File() io.ReadCloser {
 func LoadDictionary() Dictionary {
 	edictFile := Edict2File()
 	defer edictFile.Close()
-	return ParseDictionary(edictFile)
+	return ParseDictionary(edictFile, false)
 }
 
 //ParseDictionary takes a reader and parses its input as a Dictionary
-func ParseDictionary(reader io.Reader) Dictionary {
+// it also takes a second argument which injects a selep inside the loop that
+// conjugates all the worlds in the dictionary
+// this is done just so that dictionary can be loaded in the browser using gopherjs
+// by doing this sleep browser doesn't get UI lock when parsing a dictionary
+func ParseDictionary(reader io.Reader, slowParsing bool) Dictionary {
 	var dictionary Dictionary
 	dictionary.bigHash = make(dictionaryLookupMap)
 
@@ -52,6 +57,10 @@ func ParseDictionary(reader io.Reader) Dictionary {
 
 	for edictFileScanner.Scan() {
 		word := ParseDictionaryLine(edictFileScanner.Text())
+
+		if slowParsing == true {
+			time.Sleep(1) // 1 is enough to trigger context switch
+		}
 
 		if len(word.KanjiWords) != 0 {
 			conjugations := word.Conjugations()
