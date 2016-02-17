@@ -1,0 +1,13 @@
+#+TITLE: Silverkanji
+#+STARTUP: showall
+
+* Overview
+Silverkanji is a web interface for [[http://github.com/kirillrdy/libkanji][libkanji]]
+
+** Todo list
+*** Merge into libkaji
+*** better layout
+*** stroke order generation
+*** investigate what is broken here
+食べた今日は楽しかったです。
+
