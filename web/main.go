@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	app := gopherjs.App{PackageName: "github.com/kirillrdy/silverkanji/client"}
+	app := gopherjs.App{PackageName: "github.com/kirillrdy/libkanji/web/client"}
 
 	http.HandleFunc("/edict", func(response http.ResponseWriter, request *http.Request) {
 		http.ServeFile(response, request, libkanji.Edict2FilePath())
