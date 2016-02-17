@@ -58,15 +58,16 @@ func ParseDictionary(reader io.Reader, slowParsing bool) Dictionary {
 	for edictFileScanner.Scan() {
 		word := ParseDictionaryLine(edictFileScanner.Text())
 
-		if slowParsing == true {
-			time.Sleep(1) // 1 is enough to trigger context switch
-		}
-
 		if len(word.KanjiWords) != 0 {
 			conjugations := word.Conjugations()
 			for i := range conjugations {
 				dictionary.bigHash[conjugations[i]] = append(dictionary.bigHash[conjugations[i]], word)
 			}
+		}
+
+		// This only exists for gopherjs
+		if slowParsing == true {
+			time.Sleep(1) // 1 is enough to trigger context switch
 		}
 	}
 	return dictionary
