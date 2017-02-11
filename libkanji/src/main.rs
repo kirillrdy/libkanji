@@ -30,9 +30,8 @@ fn parse_dictionary() -> Dictionary {
     let file = File::open("../edict2_utf8").unwrap();
     let file = BufReader::new(&file);
     for line in file.lines() {
-        let l = line.unwrap();
-        
-        let word = parse_dictionary_line(l);
+        let line = line.unwrap();
+        let word = parse_dictionary_line(line);
 
         println!("{:?}", word);
 
@@ -50,7 +49,7 @@ fn parse_dictionary() -> Dictionary {
 
 #[derive(Debug)]
 struct ParseError {
-    description: String
+    description: String,
 }
 
 impl fmt::Display for ParseError {
@@ -87,7 +86,7 @@ fn parse_dictionary_line(original: String) -> Result<DictionaryEntry, Box<Error>
         dictionary_entries = furigana_entry_regex.captures(original.as_str());
         if dictionary_entries.is_none() {
             let error_message = format!("gave up on {} \n", original);
-            let error = ParseError{description: error_message};
+            let error = ParseError { description: error_message };
             return Err(Box::new(error));
         }
     }
