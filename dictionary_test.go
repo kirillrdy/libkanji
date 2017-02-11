@@ -10,7 +10,7 @@ func BenchmarkDictionaryLoad(b *testing.B) {
 
 func TestNumberOfConjugations(t *testing.T) {
 	dictionary := LoadDictionary()
-	expectedSize := 407205
+	expectedSize := 416589
 	if len(dictionary.bigHash) != expectedSize {
 		t.Errorf("Parsed dictionary not correct size, %v expected, got %v", expectedSize, len(dictionary.bigHash))
 	}
