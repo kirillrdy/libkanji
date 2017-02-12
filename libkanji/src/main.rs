@@ -12,7 +12,6 @@ use regex::Regex;
 
 fn main() {
     parse_dictionary();
-
 }
 #[derive(Default, Debug)]
 struct DictionaryEntry {
@@ -24,16 +23,21 @@ struct DictionaryEntry {
 }
 type Dictionary = HashMap<String, Vec<DictionaryEntry>>;
 
+type Edict = Vec<DictionaryEntry>;
+
 fn parse_dictionary() -> Dictionary {
     let dictionary: Dictionary = HashMap::new();
 
+    let mut edict = Vec::new();
+
     let file = File::open("../edict2_utf8").unwrap();
-    let file = BufReader::new(&file);
-    for line in file.lines() {
+    let buffer = BufReader::new(&file);
+    for line in buffer.lines() {
         let line = line.unwrap();
         let word = parse_dictionary_line(line);
+        edict.push(word);
 
-        println!("{:?}", word);
+        //println!("{:?}", word);
 
         //     if len(word.KanjiWords) != 0 {
         //         conjugations := word.Conjugations()
@@ -101,15 +105,21 @@ fn parse_dictionary_line(original: String) -> Result<DictionaryEntry, Box<Error>
     }
 
     if dictionary_entries.len() == 5 {
-    	dictionary_entry.pronunciations = clone_vector_of_str(dictionary_entries.get(2).unwrap().as_str().split(";").collect());
-  	  dictionary_entry.types = clone_vector_of_str(dictionary_entries.get(3).unwrap().as_str().split(",").collect());
- 	    dictionary_entry.meanings = clone_vector_of_str(dictionary_entries.get(4).unwrap().as_str().split("/").collect());
+        dictionary_entry.pronunciations =
+            clone_vector_of_str(dictionary_entries.get(2).unwrap().as_str().split(";").collect());
+        dictionary_entry.types =
+            clone_vector_of_str(dictionary_entries.get(3).unwrap().as_str().split(",").collect());
+        dictionary_entry.meanings =
+            clone_vector_of_str(dictionary_entries.get(4).unwrap().as_str().split("/").collect());
     } else if dictionary_entries.len() == 4 {
-    	// word.Pronunciations = strings.Split(dictionary_entries[1], ";")
-    	// word.Types = strings.Split(dictionary_entries[2], ",")
-    	// word.Meanings = strings.Split(dictionary_entries[3], "/")
+        dictionary_entry.pronunciations =
+            clone_vector_of_str(dictionary_entries.get(1).unwrap().as_str().split(";").collect());
+        dictionary_entry.types =
+            clone_vector_of_str(dictionary_entries.get(2).unwrap().as_str().split(",").collect());
+        dictionary_entry.meanings =
+            clone_vector_of_str(dictionary_entries.get(3).unwrap().as_str().split("/").collect());
     } else {
-    	panic!("Could not parse word correctly")
+        panic!("Could not parse word correctly")
     }
 
     //fmt.Printf("%q \n", word.KanjiWords)
