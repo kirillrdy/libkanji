@@ -96,24 +96,22 @@ fn parse_dictionary_line(original: String) -> Result<DictionaryEntry, Box<Error>
     // strip_ending_regex := regexp.MustCompile(`\(.*?\)$`)
     for word in dictionary_entries.get(1).unwrap().as_str().split(";") {
         //TODO strip ending of kanji
+        // 	stripped_word := strip_ending_regex.ReplaceAllLiteralString(kanjiWord, "")
         dictionary_entry.kanji_words.push(word.to_string());
     }
 
-    // for _, kanjiWord := range strings.Split(dictionary_entries[1], ";") {
-    // 	stripped_word := strip_ending_regex.ReplaceAllLiteralString(kanjiWord, "")
-    // 	word.KanjiWords = append(word.KanjiWords, stripped_word)
-    // }
-    // if len(dictionary_entries) == 5 {
-    // 	word.Pronunciations = strings.Split(dictionary_entries[2], ";")
-    // 	word.Types = strings.Split(dictionary_entries[3], ",")
-    // 	word.Meanings = strings.Split(dictionary_entries[4], "/")
-    // } else if len(dictionary_entries) == 4 {
-    // 	word.Pronunciations = strings.Split(dictionary_entries[1], ";")
-    // 	word.Types = strings.Split(dictionary_entries[2], ",")
-    // 	word.Meanings = strings.Split(dictionary_entries[3], "/")
-    // } else {
-    // 	panic("Could not parse word correctly")
-    // }
+    if dictionary_entries.len() == 5 {
+    	dictionary_entry.pronunciations = clone_vector_of_str(dictionary_entries.get(2).unwrap().as_str().split(";").collect());
+  	  dictionary_entry.types = clone_vector_of_str(dictionary_entries.get(3).unwrap().as_str().split(",").collect());
+ 	    dictionary_entry.meanings = clone_vector_of_str(dictionary_entries.get(4).unwrap().as_str().split("/").collect());
+    } else if dictionary_entries.len() == 4 {
+    	// word.Pronunciations = strings.Split(dictionary_entries[1], ";")
+    	// word.Types = strings.Split(dictionary_entries[2], ",")
+    	// word.Meanings = strings.Split(dictionary_entries[3], "/")
+    } else {
+    	panic!("Could not parse word correctly")
+    }
+
     //fmt.Printf("%q \n", word.KanjiWords)
 
     //TODO strip '()' from words
@@ -125,4 +123,12 @@ fn parse_dictionary_line(original: String) -> Result<DictionaryEntry, Box<Error>
     //TODO Dont do cloning somehow? move this to be last
     dictionary_entry.original_string = original.clone();
     Ok(dictionary_entry)
+}
+
+fn clone_vector_of_str(original: Vec<&str>) -> Vec<String> {
+    let mut new: Vec<String> = Vec::new();
+    for item in original {
+        new.push(item.to_string())
+    }
+    new
 }
