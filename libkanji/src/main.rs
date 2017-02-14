@@ -28,14 +28,14 @@ type Edict = Vec<DictionaryEntry>;
 fn parse_dictionary() -> Dictionary {
     let dictionary: Dictionary = HashMap::new();
 
-    let mut edict = Vec::new();
+    let mut edict: Edict = Vec::new();
 
     let file = File::open("../edict2_utf8").unwrap();
     let buffer = BufReader::new(&file);
     for line in buffer.lines() {
         let line = line.unwrap();
         let word = parse_dictionary_line(line);
-        edict.push(word);
+        edict.push(word.unwrap()); //TODO get rid of unwrap
 
         //println!("{:?}", word);
 
@@ -98,7 +98,7 @@ fn parse_dictionary_line(original: String) -> Result<DictionaryEntry, Box<Error>
     let dictionary_entries = dictionary_entries.unwrap();
 
     // strip_ending_regex := regexp.MustCompile(`\(.*?\)$`)
-    for word in dictionary_entries.get(1).unwrap().as_str().split(";") {
+    for word in dictionary_entries.get(1).unwrap().as_str().split(';') {
         //TODO strip ending of kanji
         // 	stripped_word := strip_ending_regex.ReplaceAllLiteralString(kanjiWord, "")
         dictionary_entry.kanji_words.push(word.to_string());
@@ -106,18 +106,18 @@ fn parse_dictionary_line(original: String) -> Result<DictionaryEntry, Box<Error>
 
     if dictionary_entries.len() == 5 {
         dictionary_entry.pronunciations =
-            clone_vector_of_str(dictionary_entries.get(2).unwrap().as_str().split(";").collect());
+            clone_vector_of_str(dictionary_entries.get(2).unwrap().as_str().split(';').collect());
         dictionary_entry.types =
-            clone_vector_of_str(dictionary_entries.get(3).unwrap().as_str().split(",").collect());
+            clone_vector_of_str(dictionary_entries.get(3).unwrap().as_str().split(',').collect());
         dictionary_entry.meanings =
-            clone_vector_of_str(dictionary_entries.get(4).unwrap().as_str().split("/").collect());
+            clone_vector_of_str(dictionary_entries.get(4).unwrap().as_str().split('/').collect());
     } else if dictionary_entries.len() == 4 {
         dictionary_entry.pronunciations =
-            clone_vector_of_str(dictionary_entries.get(1).unwrap().as_str().split(";").collect());
+            clone_vector_of_str(dictionary_entries.get(1).unwrap().as_str().split(';').collect());
         dictionary_entry.types =
-            clone_vector_of_str(dictionary_entries.get(2).unwrap().as_str().split(",").collect());
+            clone_vector_of_str(dictionary_entries.get(2).unwrap().as_str().split(',').collect());
         dictionary_entry.meanings =
-            clone_vector_of_str(dictionary_entries.get(3).unwrap().as_str().split("/").collect());
+            clone_vector_of_str(dictionary_entries.get(3).unwrap().as_str().split('/').collect());
     } else {
         panic!("Could not parse word correctly")
     }
