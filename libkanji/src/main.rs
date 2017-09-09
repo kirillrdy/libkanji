@@ -31,8 +31,10 @@ fn parse_dictionary() -> Dictionary {
     let mut edict: Edict = Vec::new();
 
     let file = File::open("../edict2_utf8").unwrap();
-    let buffer = BufReader::new(&file);
-    for line in buffer.lines() {
+    let mut lines = BufReader::new(&file).lines();
+    // Skipping first line, since it just a header that doesn't follow format
+    lines.next();
+    for line in lines {
         let line = line.unwrap();
         let word = parse_dictionary_line(line);
         edict.push(word.unwrap()); //TODO get rid of unwrap
