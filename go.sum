@@ -1,5 +1,7 @@
+github.com/gopherjs/gopherjs v0.0.0-20180825215210-0210a2f0f73c/go.mod h1:wJfORRmW1u3UXTncJ5qlYoELFm8eSnnEO6hX4iZ3EWY=
 github.com/kirillrdy/gopherjs v0.0.0-20160117062657-6b8d2d821360 h1:gxg9S7u38GqRlI/eXlcx3ApVbi6Ir6nYHX/x6HClTh0=
 github.com/kirillrdy/gopherjs v0.0.0-20160117062657-6b8d2d821360/go.mod h1:rWt4MYLvk/Idh4ViPEI7u+bbiyjqdhqPv0EqjgzQ3Ys=
+github.com/kirillrdy/gopherjs v0.0.0-20180915010346-6bc7469c0bde/go.mod h1:AlO/hbRLZQLMxj1xQ5OWJBExx03Fo+RcK1oDhL2C9RQ=
 github.com/kirillrdy/nadeshiko v0.0.0-20170909220548-e6bda46f79fe h1:Y+3gnkmIuzpvMq0N1GI84lutUakqw9l1hgfoeiMIEso=
 github.com/kirillrdy/nadeshiko v0.0.0-20170909220548-e6bda46f79fe/go.mod h1:8CaU24acjCsVhlVuDHOxLe3jbkzjl+vpRYsU0On37tM=
 github.com/kirillrdy/web v0.0.0-20170502231629-1dc2c13cfa99 h1:KWHoU3aL75kf8w057+tw3Mzir1wI/4gnLt5P2plHGxs=
@@ -8,3 +10,4 @@ github.com/sparkymat/webdsl v0.0.0-20170731094902-c07b606d85cc h1:bCAaD4QvuDZSDB
 github.com/sparkymat/webdsl v0.0.0-20170731094902-c07b606d85cc/go.mod h1:Cf2mt7x2RDG4jlZ1bLlXT9HDftiTa3Zzlhb5LMPyGOY=
 golang.org/x/net v0.0.0-20180911220305-26e67e76b6c3 h1:czFLhve3vsQetD6JOJ8NZZvGQIXlnN3/yXxbT6/awxI=
 golang.org/x/net v0.0.0-20180911220305-26e67e76b6c3/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
+honnef.co/go/js/dom v0.0.0-20180323154144-6da835bec70f/go.mod h1:sUMDUKNB2ZcVjt92UnLy3cdGs+wDAcrPdV3JP6sVgA4=
